@@ -1,3 +1,0 @@
-/home/saikewei/astro_plate_solving/clib/build/CMakeFiles/astroapi.dir
-/home/saikewei/astro_plate_solving/clib/build/CMakeFiles/edit_cache.dir
-/home/saikewei/astro_plate_solving/clib/build/CMakeFiles/rebuild_cache.dir
