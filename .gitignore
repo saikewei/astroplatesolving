@@ -26,3 +26,6 @@ clib/*.dll
 # OS
 .DS_Store
 Thumbs.db
+
+#config files
+config.yaml

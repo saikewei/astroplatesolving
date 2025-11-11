@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"astro_plate_solving/config"
 	"astro_plate_solving/models"
 	"astro_plate_solving/utils"
 	"io/ioutil"
@@ -54,9 +55,8 @@ func SolveImageHandler(c *gin.Context) {
 		return
 	}
 
-	// 4. 设置索引文件路径 (建议从配置中读取)
-	// 注意：此路径应为服务器上的绝对路径
-	indexPath := "/home/saikewei/star_index"
+	// 4. 从配置文件中获取索引文件路径
+	indexPath := config.GetIndexPath()
 
 	// 5. 调用核心解析函数
 	solution, err := utils.Solve(imageData, indexPath, focalLength)
