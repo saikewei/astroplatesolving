@@ -15,6 +15,7 @@ server
 clib/*.so
 clib/*.dylib
 clib/*.dll
+clib/build/
 
 # IDE
 .vscode/
