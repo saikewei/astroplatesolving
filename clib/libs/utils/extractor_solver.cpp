@@ -326,8 +326,8 @@ int AstroExtractorSolver::solve(const std::string indexPath, const double focalL
         dl_append(job->scales, arcsecperpix);
     }
 
-    bp->timelimit = 600;
-    bp->cpulimit = 600;
+    bp->timelimit = 30;
+    bp->cpulimit = 30;
 
     std::cout << "开始进行天体定位求解..." << std::endl;
     // This runs the job in the engine in the file engine.c
