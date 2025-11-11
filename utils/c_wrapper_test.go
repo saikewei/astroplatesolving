@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"io/ioutil"
+	"os"
 	"path/filepath"
 	"testing"
 )
@@ -14,7 +14,7 @@ func TestSolve(t *testing.T) {
 		t.Fatalf("Failed to get absolute path for test image: %v", err)
 	}
 
-	imageData, err := ioutil.ReadFile(imagePath)
+	imageData, err := os.ReadFile(imagePath)
 	if err != nil {
 		t.Fatalf("Failed to read test image '%s': %v", imagePath, err)
 	}

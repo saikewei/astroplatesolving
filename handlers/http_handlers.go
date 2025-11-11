@@ -4,7 +4,7 @@ import (
 	"astro_plate_solving/config"
 	"astro_plate_solving/models"
 	"astro_plate_solving/utils"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"strconv"
 
@@ -49,7 +49,7 @@ func SolveImageHandler(c *gin.Context) {
 	}
 	defer src.Close()
 
-	imageData, err := ioutil.ReadAll(src)
+	imageData, err := io.ReadAll(src)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "无法读取文件内容"})
 		return
