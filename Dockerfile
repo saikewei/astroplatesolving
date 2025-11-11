@@ -41,4 +41,4 @@ EXPOSE 24568
 # 设置环境变量，确保 .so 能被找到
 ENV LD_LIBRARY_PATH=/app/clib/build
 
-CMD ["/bin/bash", "-c", "./astro_server > server.log 2>&1"]
+CMD ["/bin/bash", "-c", "./astro_server 2>&1 | tee server.log"]
