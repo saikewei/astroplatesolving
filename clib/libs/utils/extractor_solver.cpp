@@ -119,15 +119,15 @@ int AstroExtractorSolver::extract_stars()
                                           INIT_KEEP / PARTITION_THREADS,
                                           &backgrounds[partitionIndex]};
 
-                std::cout << "创建分区 [" << i * horizontalPartitions + j + 1 << "/"
-                          << horizontalPartitions * verticalPartitions << "]" << std::endl;
+                // std::cout << "创建分区 [" << i * horizontalPartitions + j + 1 << "/"
+                // << horizontalPartitions * verticalPartitions << "]" << std::endl;
 
                 futures.push_back(std::async(std::launch::async, &AstroExtractorSolver::extractPartition, this, parameters));
                 partitionIndex++;
             }
         }
 
-        std::cout << "已启动所有分区处理任务，等待完成..." << std::endl;
+        // std::cout << "已启动所有分区处理任务，等待完成..." << std::endl;
     }
     else
     {
@@ -192,8 +192,8 @@ int AstroExtractorSolver::extract_stars()
         }
         extractedStars.insert(extractedStars.end(), acceptedStars.begin(), acceptedStars.end());
 
-        std::cout << "分区 [" << i + 1 << "/" << futures.size() << "] 完成，接受 "
-                  << acceptedStars.size() << " 颗恒星" << std::endl;
+        // std::cout << "分区 [" << i + 1 << "/" << futures.size() << "] 完成，接受 "
+        //<< acceptedStars.size() << " 颗恒星" << std::endl;
     }
 
     std::cout << "计算背景统计信息..." << std::endl;
@@ -241,7 +241,7 @@ int AstroExtractorSolver::solve(const std::string indexPath, const double focalL
     engine->inparallel = TRUE;
     engine->minwidth = 0.1;
     engine->maxwidth = 180.0;
-    log_init((log_level)LOG_MSG);
+    log_init((log_level)LOG_NONE);
 
     engine_add_search_path(engine, indexPath.c_str());
     engine_autoindex_search_paths(engine);
