@@ -165,7 +165,7 @@ int AstroExtractorSolver::extract_stars()
 
     for (size_t i = 0; i < futures.size(); ++i)
     {
-        std::cout << "处理中分区 [" << i + 1 << "/" << futures.size() << "]..." << std::endl;
+        // std::cout << "处理中分区 [" << i + 1 << "/" << futures.size() << "]..." << std::endl;
         // 1. 获取 future 的结果
         std::vector<Star> partitionStars = futures[i].get();
         std::vector<Star> acceptedStars;
