@@ -4,11 +4,14 @@ import (
 	"astro_plate_solving/config"
 	"astro_plate_solving/models"
 	"astro_plate_solving/utils"
+	"bytes"
 	"io"
+	"math/big"
 	"net/http"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
+	"github.com/rwcarlsen/goexif/exif"
 )
 
 // HealthCheck - 健康检查
@@ -53,6 +56,25 @@ func SolveImageHandler(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "无法读取文件内容"})
 		return
+	}
+
+	// 如果焦距为0，尝试从EXIF读取
+	if focalLength == 0 {
+		exifData, err := exif.Decode(bytes.NewReader(imageData))
+		if err == nil {
+			if fl, err := exifData.Get(exif.FocalLength); err == nil {
+				rat, err := fl.Rat(0)
+				if err == nil && rat.Num() != nil && rat.Denom() != nil {
+					num := new(big.Float).SetInt(rat.Num())
+					denom := new(big.Float).SetInt(rat.Denom())
+					fNum, _ := num.Float64()
+					fDenom, _ := denom.Float64()
+					if fDenom != 0 {
+						focalLength = fNum / fDenom
+					}
+				}
+			}
+		}
 	}
 
 	// 4. 从配置文件中获取索引文件路径
